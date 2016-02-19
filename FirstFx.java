@@ -5,7 +5,10 @@
  */
 package firstfx;
 
+
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -13,6 +16,9 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.cell.ComboBoxListCell;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
@@ -35,7 +41,27 @@ public class FirstFX extends Application implements EventHandler<ActionEvent> {
         btn.setOnAction( this);
         btn.setId("btn");
         btnSecond.setId("btn1");
-              
+        
+        ListView<String> listView = new ListView<>();
+        ObservableList<String> data = FXCollections.observableArrayList();
+        data.addAll("First","second","third");
+        
+        
+        ObservableList<String> name = FXCollections.observableArrayList();
+        name.add("choose");
+        listView.setItems(data);
+        listView.setCellFactory(ComboBoxListCell.forListView(name));
+        listView.setOnMouseClicked( new EventHandler<MouseEvent>() {
+            public void handle() {
+                lable.setText("Clicked on: " + listView.getSelectionModel().getSelectedItems().toString());
+            }
+
+            @Override
+            public void handle(MouseEvent t) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        });
+                
         //StackPane root = new StackPane();
         
         //root.getChildren().add(btn);
