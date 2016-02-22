@@ -1,1 +1,1 @@
-# FirstFx
+# Fx  - main class
